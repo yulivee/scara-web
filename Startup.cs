@@ -27,6 +27,11 @@ namespace scara_web_backend
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            var rosService = new RosInteractionService();
+            rosService.Startup();
+
+            services.AddSingleton<IRosInteractionService>(rosService);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
