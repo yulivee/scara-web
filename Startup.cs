@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using scara_web_backend.Services;
 
 namespace scara_web_backend
 {
@@ -29,7 +30,6 @@ namespace scara_web_backend
             });
 
             var rosService = new RosInteractionService();
-            rosService.Startup();
 
             services.AddSingleton<IRosInteractionService>(rosService);
         }
