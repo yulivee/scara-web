@@ -1,0 +1,28 @@
+<h1>Move Robot Arm to absolute position aka drive to point</h1>
+
+<form name="AbsoluteDrive">
+  <table class='table table-striped' *ngIf="forecasts">
+    <thead>
+      <tr>
+        <th>J1</th>
+        <th>J2</th>
+        <th>J3</th>
+        <th>J4</th>
+        <th>J5</th>
+        <th>J6</th>
+        <th>Gripper</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="j1" ng-model="robot.j1"></td>
+        <td><input type="text" name="j2" ng-model="robot.j2"></td>
+        <td><input type="text" name="j3" ng-model="robot.j3"></td>
+        <td><input type="text" name="j4" ng-model="robot.j4"></td>
+        <td><input type="text" name="j5" ng-model="robot.j5"></td>
+        <td><input type="text" name="j6" ng-model="robot.j6"></td>
+        <td><input type="text" name="gripper" ng-model="robot.gripper"></td>
+      </tr>
+    </tbody>
+  </table>
+</form>

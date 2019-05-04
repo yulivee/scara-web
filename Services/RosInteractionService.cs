@@ -11,18 +11,20 @@ namespace scara_web_backend.Services
 {
     public class RosInteractionService : IRosInteractionService
     {
+        private readonly Dictionary<string, IRosTopicPublisher> topics;
+
         /*         private Dictionary<String, Dictionary<String,object>> _topics = new Dictionary<string, Dictionary<string, object>>{ 
-                                            { "Home" , new Dictionary<string, object> {{ "type", "std_msgs.Empty"}, {"pubId", null}} ,
-                                            { "SetPidState", "std_msgs.Empty"},
-                                            { "DriveTo" , "scara_master::AxisClicks"}, { "DriveDist" , "scara_master::AxisClicks"}
-                                            };
+{ "Home" , new Dictionary<string, object> {{ "type", "std_msgs.Empty"}, {"pubId", null}} ,
+{ "SetPidState", "std_msgs.Empty"},
+{ "DriveTo" , "scara_master::AxisClicks"}, { "DriveDist" , "scara_master::AxisClicks"}
+};
 
 
-                { home => {
-                    type => std_msgs.Empty,
-                    pubId => $publisher
-                }}
-        */
+{ home => {
+type => std_msgs.Empty,
+pubId => $publisher
+}}
+*/
 
         private interface IRosTopicPublisher
         {
@@ -67,21 +69,35 @@ namespace scara_web_backend.Services
 
             var socket = new RosSocket(new WebSocketNetProtocol("ws://127.0.0.1:9090"));
 
-            var topics = (new IRosTopicPublisher[]{
+            topics = (new IRosTopicPublisher[]{
                 new RosTopicPublisher<std_msgs.String>("DriveTo", socket),
                 new RosTopicPublisher<std_msgs.String>("DriveDist", socket),
                 new RosTopicPublisher<std_msgs.String>("Home", socket),
                 new RosTopicPublisher<std_msgs.Time>("SetPidState", socket)
+                //new RosTopicPublisher<std_msgs.Bool>("CheckTargetReached", socket)
+                //new RosTopicPublisher<std_msgs.Int32>("SetSpeed", socket)
+                //new RosTopicPublisher<std_msgs.Int32>("SetZone", socket)
             }).ToDictionary(x => x.Name);
 
-            topics["Home"].Publish(new std_msgs.String("data"));
 
         }
 
-        public void SendMove(RobotJoints robotJoints)
-        {
-            throw new NotImplementedException();
+        public void RelativeMove(RobotJoints robotJoints) {
+        //driveDist  - Achsweise händisch verfahren um z.b. +10
+            topics["DriveDist"].Publish(new std_msgs.String(robotJoints.ToString()));
         }
 
+        public void AbsoluteMove(RobotJoints robotJoints) {
+        //driveTo - einen Punkt anfahren
+            topics["DriveTo"].Publish(new std_msgs.String(robotJoints.ToString()));
+
+        }
     }
 }
+
+#region ImplementationNotes
+/* 
+    driveDist  - Achsweise händisch verfahren um z.b. +10
+    driveTo - einen Punkt anfahren
+ */
+#endregion
