@@ -5,45 +5,47 @@
     <tbody>
       <tr>
         <th>J1</th>
-        <td><input size="4" type="number" name="j1" ng-model="robot.j1"></td>
-        <td><input type="button" value="+" onclick=""></td>
-        <td><input type="button" value="-" onclick=""></td>
+        <td><input size="4" type="number" name="joint1" [(ngModel)]="robot.joint1"></td>
+        <td><input type="button" value="+" (click)="increment('joint1')"></td>
+        <td><input type="button" value="-" (click)="decrement('joint1')"></td>
       </tr>
       <tr>
         <th>J2</th>
-        <td><input size="4" type="number" name="j2" ng-model="robot.j2"></td>
-        <td><input type="button" value="+" onclick=""></td>
-        <td><input type="button" value="-" onclick=""></td>
+        <td><input size="4" type="number" name="joint2" [(ngModel)]="robot.joint2"></td>
+        <td><input type="button" value="+" (click)="increment('joint2')"></td>
+        <td><input type="button" value="-" (click)="decrement('joint2')"></td>
       </tr>
       <tr>
         <th>J3</th>
-        <td><input size="4" type="number" name="j3" ng-model="robot.j3"></td>
-        <td><input type="button" value="+" onclick=""></td>
-        <td><input type="button" value="-" onclick=""></td>
+        <td><input size="4" type="number" name="joint3" [(ngModel)]="robot.joint3"></td>
+        <td><input type="button" value="+" (click)="increment('joint3')"></td>
+        <td><input type="button" value="-" (click)="decrement('joint3')"></td>
       </tr>
       <tr>
         <th>J4</th>
-        <td><input size="4" type="number" name="j4" ng-model="robot.j4"></td>
-        <td><input type="button" value="+" onclick=""></td>
-        <td><input type="button" value="-" onclick=""></td>
+        <td><input size="4" type="number" name="joint4" [(ngModel)]="robot.joint4"></td>
+        <td><input type="button" value="+" (click)="increment('joint4')"></td>
+        <td><input type="button" value="-" (click)="decrement('joint4')"></td>
       </tr>
       <tr>
         <th>J5</th>
-        <td><input size="4" type="number" name="j5" ng-model="robot.j5"></td>
-        <td><input type="button" value="+" onclick=""></td>
-        <td><input type="button" value="-" onclick=""></td>
+        <td><input size="4" type="number" name="joint5" [(ngModel)]="robot.joint5"></td>
+        <td><input type="button" value="+" (click)="increment('joint5')"></td>
+        <td><input type="button" value="-" (click)="decrement('joint5')"></td>
       </tr>
       <tr>
-        <th>J6</th>
-        <td><input size="4" type="number" name="j6" ng-model="robot.j6"></td>
-        <td><input type="button" value="+" onclick=""></td>
-        <td><input type="button" value="-" onclick=""></td>
+        <th>joint6</th>
+        <td><input size="4" type="number" name="joint6" [(ngModel)]="robot.joint6"></td>
+        <td><input type="button" value="+" (click)="increment('joint6')"></td>
+        <td><input type="button" value="-" (click)="decrement('joint6')"></td>
       </tr>
       <tr>
         <th>Gripper</th>
-        <td><input size="4" type="number" name="gripper" ng-model="robot.gripper"></td>
-        <td><input type="button" value="+" onclick=""></td>
-        <td><input type="button" value="-" onclick=""></td>
+        <td><input size="4" type="number" name="gripper" [(ngModel)]="robot.gripper"></td>
+        <td><input type="button" value="+" (click)="increment('gripper')"></td>
+        <td><input type="button" value="-" (click)="decrement('gripper')"></td>
       </tr>
     </tbody>
   </table>
+
+  <p>Current Point: [ {{robot.joint1}}, {{robot.joint2}}, {{robot.joint3}}, {{robot.joint4}}, {{robot.joint5}}, {{robot.joint6}}, {{robot.gripper}} ] </p>

@@ -4,28 +4,29 @@ import { RobotJoints } from './RobotJoints';
 
 @Component({
   selector: 'app-abs-drive',
-  templateUrl: './abs-drive.component.html'
+  templateUrl: './abs-drive.component.html',
+  styleUrls: ['./drive.component.css']
 })
 export class AbsoluteDriveComponent {
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    const data = <RobotJoints> {
-      joint1: 1
-    };
-    
-    http.post<any>(baseUrl + 'api/RobotJoint/absMove',data).subscribe(result => {
-    }, error => console.error(error));
+  constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string) {
   }
 
-  private robotInstance = <RobotJoints>{}; 
-  setPosition() {
-      this.robotInstance.joint1 = robot.j1;
-      this.robotInstance.joint2 = robot.j2;
-      this.robotInstance.joint3 = robot.j3;
-      this.robotInstance.joint4 = robot.j4;
-      this.robotInstance.joint5 = robot.j5;
-      this.robotInstance.joint6 = robot.j6;
-      this.robotInstance.gripper = robot.gripper;
+  public robot: RobotJoints = <RobotJoints>{
+    joint1: 0,
+    joint2: 0,
+    joint3: 0,
+    joint4: 0,
+    joint5: 0,
+    joint6: 0,
+    gripper: 0
+  };
 
-  } 
+  public setPosition(): void {
+    console.log(this.robot);
+
+    this._http.post<any>(this._baseUrl + 'api/RobotJoint/absMove', this.robot).subscribe(result => {
+      console.log('result of http post!', result);
+    }, error => console.error(error));
+  }
 }
