@@ -5,5 +5,5 @@ export interface RobotJoints {
   joint4: number;
   joint5: number;
   joint6: number;
-  joint7: number;
+  gripper: number;
 }

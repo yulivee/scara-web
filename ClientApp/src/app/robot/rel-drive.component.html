@@ -1,47 +1,49 @@
-<h1>Move Robot Arm to absolute position aka drive to point</h1>
+<h2>Move Robot Arm to Relative position</h2>
+<h3>Drive by Hand</h3>
 
-<form name="RelativeDrive">
   <table class='table table-striped'>
-    <thead>
-      <tr>
-        <th>J1</th>
-        <th>J2</th>
-        <th>J3</th>
-        <th>J4</th>
-        <th>J5</th>
-        <th>J6</th>
-        <th>Gripper</th>
-      </tr>
-    </thead>
     <tbody>
       <tr>
-        <td><input type="text" name="j1" ng-model="robot.j1"></td>
-        <td><input type="button" onclick=""></td>
+        <th>J1</th>
+        <td><input size="4" type="number" name="j1" ng-model="robot.j1"></td>
+        <td><input type="button" value="+" onclick=""></td>
+        <td><input type="button" value="-" onclick=""></td>
       </tr>
       <tr>
-        <td><input type="text" name="j2" ng-model="robot.j2"></td>
-        <td><input type="button" onclick=""></td>
+        <th>J2</th>
+        <td><input size="4" type="number" name="j2" ng-model="robot.j2"></td>
+        <td><input type="button" value="+" onclick=""></td>
+        <td><input type="button" value="-" onclick=""></td>
       </tr>
       <tr>
-        <td><input type="text" name="j3" ng-model="robot.j3"></td>
-        <td><input type="button" onclick=""></td>
+        <th>J3</th>
+        <td><input size="4" type="number" name="j3" ng-model="robot.j3"></td>
+        <td><input type="button" value="+" onclick=""></td>
+        <td><input type="button" value="-" onclick=""></td>
       </tr>
       <tr>
-        <td><input type="text" name="j4" ng-model="robot.j4"></td>
-        <td><input type="button" onclick=""></td>
+        <th>J4</th>
+        <td><input size="4" type="number" name="j4" ng-model="robot.j4"></td>
+        <td><input type="button" value="+" onclick=""></td>
+        <td><input type="button" value="-" onclick=""></td>
       </tr>
       <tr>
-        <td><input type="text" name="j5" ng-model="robot.j5"></td>
-        <td><input type="button" onclick=""></td>
+        <th>J5</th>
+        <td><input size="4" type="number" name="j5" ng-model="robot.j5"></td>
+        <td><input type="button" value="+" onclick=""></td>
+        <td><input type="button" value="-" onclick=""></td>
       </tr>
       <tr>
-        <td><input type="text" name="j6" ng-model="robot.j6"></td>
-        <td><input type="button" onclick=""></td>
+        <th>J6</th>
+        <td><input size="4" type="number" name="j6" ng-model="robot.j6"></td>
+        <td><input type="button" value="+" onclick=""></td>
+        <td><input type="button" value="-" onclick=""></td>
       </tr>
       <tr>
-        <td><input type="text" name="gripper" ng-model="robot.gripper"></td>
-        <td><input type="button" onclick=""></td>
+        <th>Gripper</th>
+        <td><input size="4" type="number" name="gripper" ng-model="robot.gripper"></td>
+        <td><input type="button" value="+" onclick=""></td>
+        <td><input type="button" value="-" onclick=""></td>
       </tr>
     </tbody>
   </table>
-</form>

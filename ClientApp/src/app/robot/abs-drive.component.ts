@@ -16,4 +16,16 @@ export class AbsoluteDriveComponent {
     http.post<any>(baseUrl + 'api/RobotJoint/absMove',data).subscribe(result => {
     }, error => console.error(error));
   }
+
+  private robotInstance = <RobotJoints>{}; 
+  setPosition() {
+      this.robotInstance.joint1 = robot.j1;
+      this.robotInstance.joint2 = robot.j2;
+      this.robotInstance.joint3 = robot.j3;
+      this.robotInstance.joint4 = robot.j4;
+      this.robotInstance.joint5 = robot.j5;
+      this.robotInstance.joint6 = robot.j6;
+      this.robotInstance.gripper = robot.gripper;
+
+  } 
 }
