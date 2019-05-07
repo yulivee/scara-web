@@ -15,15 +15,7 @@ export class RelativeDriveComponent {
 
   public stepWidth : number = 100;
 
-  public robot: RobotJoints = <RobotJoints>{
-    joint1: 0,
-    joint2: 0,
-    joint3: 0,
-    joint4: 0,
-    joint5: 0,
-    joint6: 0,
-    gripper: 0
-  };
+  public robot: RobotJoints =  new RobotJoints();
 
   public increment(field: string): void {
     this.robot[field] += this.stepWidth;
@@ -38,15 +30,7 @@ export class RelativeDriveComponent {
   }
 
   public setPosition(field: string): void {
-    const transmitData: RobotJoints = <RobotJoints>{
-      joint1: 0,
-      joint2: 0,
-      joint3: 0,
-      joint4: 0,
-      joint5: 0,
-      joint6: 0,
-      gripper: 0
-    };
+    const transmitData: RobotJoints = new RobotJoints();
     transmitData[field] = this.robot[field];
 
     console.log(this.robot);

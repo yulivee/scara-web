@@ -15,15 +15,7 @@ export class ProgrammingComponent {
 
   public program : string;
 
-  public robot: RobotJoints = <RobotJoints>{
-    joint1: 0,
-    joint2: 0,
-    joint3: 0,
-    joint4: 0,
-    joint5: 0,
-    joint6: 0,
-    gripper: 0
-  };
+  public robot: RobotJoints = new RobotJoints();
 
   public teachCurrentPos(): void {
     this._http.get<any>(this._baseUrl + 'api/RobotJoint/currentPos').subscribe(result => {
