@@ -1,31 +1,47 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RobotJoints } from './RobotJoints';
 
+export interface RobotParameters {
+    zone : number;
+    speed: number;
+}
 @Component({
   selector: 'app-parameters',
   templateUrl: './parameters.component.html',
   styleUrls: ['./drive.component.css']
 })
+
+
 export class RobotParametersComponent {
 
   constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string) {
   }
+  
+  public params : RobotParameters = <RobotParameters>{
+    zone : 100,
+    speed: 10
+  }
 
-  public robot: RobotJoints = <RobotJoints>{
-    joint1: 0,
-    joint2: 0,
-    joint3: 0,
-    joint4: 0,
-    joint5: 0,
-    joint6: 0,
-    gripper: 0
-  };
+  public setParams(): void {
+    console.log(this.params);
 
-  public setPosition(): void {
-    console.log(this.robot);
+    this._http.post<any>(this._baseUrl + 'api/RobotJoint/params', this.params).subscribe(result => {
+      console.log('result of http post!', result);
+    }, error => console.error(error));
+  }
 
-    this._http.post<any>(this._baseUrl + 'api/RobotJoint/params', this.robot).subscribe(result => {
+  public setMotorState(state: number): void {
+    console.log(this.params);
+
+    this._http.post<any>(this._baseUrl + 'api/RobotJoint/motorState', state).subscribe(result => {
+      console.log('result of http post!', result);
+    }, error => console.error(error));
+  }
+
+  public zeroAxis(): void {
+    console.log(this.params);
+
+    this._http.get<any>(this._baseUrl + 'api/RobotJoint/zeroAxis').subscribe(result => {
       console.log('result of http post!', result);
     }, error => console.error(error));
   }

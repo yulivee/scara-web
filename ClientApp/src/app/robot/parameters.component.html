@@ -5,16 +5,16 @@
     <tbody>
       <tr>
         <td><b>Toggle Motor </b>
-        <input type="button" value="On" (click)="SetPidState()">
-        <input type="button" value="Off" (click)="SetPidState()"></td>
+        <input type="button" value="On" (click)="setMotorState(1)">
+        <input type="button" value="Off" (click)="setMotorState(0)"></td>
       </tr>
       <tr>
         <td><b>Home </b>
-        <input type="button" value="Zero Axis" (click)="SetPidState()">
+        <input type="button" value="Zero Axis" (click)="zeroAxis()">
       </tr>
       <tr>
-        <td><b>Zone </b><input size="4" type="number" name="steps" value="100" [(ngModel)]="robot.params.zone"></td>
-        <td><b>Speed </b><input size="4" type="number" name="steps" value="100" [(ngModel)]="robot.params.speed"></td>
+        <td><b>Zone </b><input size="4" type="number" name="steps" value="100" [(ngModel)]="params.zone"></td>
+        <td><b>Speed </b><input size="4" type="number" name="steps" value="100" [(ngModel)]="params.speed"></td>
         <td><input type="button" value="Set Parameters" (click)="setParams()"></td>
       </tr>
     </tbody>

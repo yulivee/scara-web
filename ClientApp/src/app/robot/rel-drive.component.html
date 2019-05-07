@@ -1,5 +1,5 @@
-<h2>Move Robot Arm to Relative position</h2>
-<h3>Drive by Hand</h3>
+<h2>Move Robot Arm to Relative Joint position</h2>
+<h3>Drive individual Joints by Hand</h3>
 
   <table class='table table-striped'>
     <tbody>
@@ -40,9 +40,9 @@
       </tr>
       <tr>
         <th>StepWidth</th>
-        <td><input size="4" type="number" name="steps" value="100" [(ngModel)]="robot.stepWidth"></td>
+        <td><input size="4" type="number" name="steps" value="100" [(ngModel)]="stepWidth"></td>
       </tr>
     </tbody>
   </table>
-
-  <p>Current Point: [ {{robot.joint1}}, {{robot.joint2}}, {{robot.joint3}}, {{robot.joint4}}, {{robot.joint5}}, {{robot.joint6}}, {{robot.gripper}} ] </p>
+<!--
+  <p>Current Point: [ {{robot.joint1}}, {{robot.joint2}}, {{robot.joint3}}, {{robot.joint4}}, {{robot.joint5}}, {{robot.joint6}}, {{robot.gripper}} ] </p>-->

@@ -2,3 +2,7 @@
 input {
     text-align: right;
 }
+
+.ext-input {
+    font-family: 'Courier New', Courier, monospace;
+}

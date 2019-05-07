@@ -13,6 +13,8 @@ export class RelativeDriveComponent {
   constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string) {
   }
 
+  public stepWidth : number = 100;
+
   public robot: RobotJoints = <RobotJoints>{
     joint1: 0,
     joint2: 0,
@@ -24,13 +26,13 @@ export class RelativeDriveComponent {
   };
 
   public increment(field: string): void {
-    this.robot[field] += 10;
+    this.robot[field] += this.stepWidth;
 
     this.setPosition(field);
   }
 
   public decrement(field: string): void {
-    this.robot[field] -= 10;
+    this.robot[field] -= this.stepWidth;
 
     this.setPosition(field);
   }

@@ -2,6 +2,16 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RobotJoints } from './RobotJoints';
 
+export interface RobotCustomAction {
+    code : number;
+    params: string;
+}
+
+export interface RobotReply {
+  stderr : string;
+  stdout : string;
+}
+
 @Component({
   selector: 'app-cust-cmd',
   templateUrl: './commands.component.html',
@@ -12,20 +22,20 @@ export class CustomCommandComponent {
   constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string) {
   }
 
-  public robot: RobotJoints = <RobotJoints>{
-    joint1: 0,
-    joint2: 0,
-    joint3: 0,
-    joint4: 0,
-    joint5: 0,
-    joint6: 0,
-    gripper: 0
+  public action : RobotCustomAction = <RobotCustomAction>{
+    code : 10,
+    params : '0,0,0,0,0,0,0\n'
   };
 
-  public setPosition(): void {
-    console.log(this.robot);
+  public reply : RobotReply = <RobotReply>{
+    stderr : 'Communication Error - Robot not connected\n',
+    stdout : 'Robot disconnected\n'
+  }
 
-    this._http.post<any>(this._baseUrl + 'api/RobotJoint/cmd', this.robot).subscribe(result => {
+  public runCmd(): void {
+    console.log(this.action);
+
+    this._http.post<any>(this._baseUrl + 'api/RobotJoint/customCmd', this.action).subscribe(result => {
       console.log('result of http post!', result);
     }, error => console.error(error));
   }
