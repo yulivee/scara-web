@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RobotJoints } from './RobotJoints';
+import { RobotService } from './robot.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { RobotJoints } from './RobotJoints';
 })
 export class RelativeDriveComponent {
 
-  constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string) {
+  constructor(private _robotService: RobotService) {
   }
 
   public stepWidth : number = 100;
@@ -35,8 +36,6 @@ export class RelativeDriveComponent {
 
     console.log(this.robot);
 
-    this._http.post<any>(this._baseUrl + 'api/RobotJoint/relMove', transmitData).subscribe(result => {
-      console.log('result of http post!', result);
-    }, error => console.error(error));
+    this._robotService.relativeMove(this.robot);
   }
 }

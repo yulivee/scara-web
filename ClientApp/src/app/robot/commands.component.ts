@@ -35,7 +35,7 @@ export class CustomCommandComponent {
   public runCmd(): void {
     console.log(this.action);
 
-    this._http.post<any>(this._baseUrl + 'api/RobotJoint/customCmd', this.action).subscribe(result => {
+    this._http.post<RobotReply>(this._baseUrl + 'api/RobotJoint/customCmd', this.action).subscribe(result => {
       console.log('result of http post!', result);
     }, error => console.error(error));
   }

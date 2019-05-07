@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RobotJoints } from './RobotJoints';
+import { RobotService } from './robot.service';
 
 @Component({
   selector: 'app-abs-drive',
@@ -9,16 +10,13 @@ import { RobotJoints } from './RobotJoints';
 })
 export class AbsoluteDriveComponent {
 
-  constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string) {
-  }
+  constructor(private _robotService: RobotService) { }
 
   public robot: RobotJoints = new RobotJoints();
 
   public setPosition(): void {
     console.log(this.robot);
 
-    this._http.post<any>(this._baseUrl + 'api/RobotJoint/absMove', this.robot).subscribe(result => {
-      console.log('result of http post!', result);
-    }, error => console.error(error));
+    this._robotService.absoluteMove(this.robot);
   }
 }
