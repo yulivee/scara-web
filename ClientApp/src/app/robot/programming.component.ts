@@ -12,15 +12,7 @@ export class ProgrammingComponent {
   constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string) {
   }
 
-  public robot: RobotJoints = <RobotJoints>{
-    joint1: 0,
-    joint2: 0,
-    joint3: 0,
-    joint4: 0,
-    joint5: 0,
-    joint6: 0,
-    gripper: 0
-  };
+  public robot: RobotJoints = new RobotJoints();
 
   public setPosition(): void {
     console.log(this.robot);
