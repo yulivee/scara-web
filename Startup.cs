@@ -31,7 +31,7 @@ namespace scara_web_backend
 
             var rosService = new RosInteractionService();
 
-            services.AddSingleton<IRosInteractionService>(rosService);
+            services.AddSingleton<IRobotInteractionService>(rosService);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

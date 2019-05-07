@@ -1,0 +1,18 @@
+<h2>Custom Commands</h2>
+
+  <table class='table table-striped'>
+    <tbody>
+      <tr>
+        <td><b>Run Command</b></td>
+        <td><b>Code: </b><input size="2" type="number" name="code" value="0" [(ngModel)]="robot.action"></td>
+        <td><b>Parameters: </b><input size="14" type="text" name="params" value="0,0,0,0,0,0,0" [(ngModel)]="robot.action.params"></td>
+        <td><input type="button" value="Send to Robot" (click)="runCmd()"></td>
+      </tr>
+      <tr>
+        <td><b>Command Output: </b><p>blip{{robot.stdout}}</p></td>
+      </tr>
+      <tr>
+        <td><b>Command Errors: </b><p>blörp{{robot.stderr}}</p></td>
+      </tr>
+    </tbody>
+  </table>

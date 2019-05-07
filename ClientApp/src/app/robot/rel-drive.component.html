@@ -4,46 +4,43 @@
   <table class='table table-striped'>
     <tbody>
       <tr>
-        <th>J1</th>
-        <td><input size="4" type="number" name="joint1" [(ngModel)]="robot.joint1"></td>
+        <th>J1 - Z Axis</th>
         <td><input type="button" value="+" (click)="increment('joint1')"></td>
         <td><input type="button" value="-" (click)="decrement('joint1')"></td>
       </tr>
       <tr>
-        <th>J2</th>
-        <td><input size="4" type="number" name="joint2" [(ngModel)]="robot.joint2"></td>
+        <th>J2 - Shoulder</th>
         <td><input type="button" value="+" (click)="increment('joint2')"></td>
         <td><input type="button" value="-" (click)="decrement('joint2')"></td>
       </tr>
       <tr>
-        <th>J3</th>
-        <td><input size="4" type="number" name="joint3" [(ngModel)]="robot.joint3"></td>
+        <th>J3 - Ellbow</th>
         <td><input type="button" value="+" (click)="increment('joint3')"></td>
         <td><input type="button" value="-" (click)="decrement('joint3')"></td>
       </tr>
       <tr>
-        <th>J4</th>
-        <td><input size="4" type="number" name="joint4" [(ngModel)]="robot.joint4"></td>
+        <th>J4 - Hand - UAJ</th>
         <td><input type="button" value="+" (click)="increment('joint4')"></td>
         <td><input type="button" value="-" (click)="decrement('joint4')"></td>
       </tr>
       <tr>
         <th>J5</th>
-        <td><input size="4" type="number" name="joint5" [(ngModel)]="robot.joint5"></td>
         <td><input type="button" value="+" (click)="increment('joint5')"></td>
         <td><input type="button" value="-" (click)="decrement('joint5')"></td>
       </tr>
       <tr>
-        <th>joint6</th>
-        <td><input size="4" type="number" name="joint6" [(ngModel)]="robot.joint6"></td>
+        <th>J6</th>
         <td><input type="button" value="+" (click)="increment('joint6')"></td>
         <td><input type="button" value="-" (click)="decrement('joint6')"></td>
       </tr>
       <tr>
         <th>Gripper</th>
-        <td><input size="4" type="number" name="gripper" [(ngModel)]="robot.gripper"></td>
         <td><input type="button" value="+" (click)="increment('gripper')"></td>
         <td><input type="button" value="-" (click)="decrement('gripper')"></td>
+      </tr>
+      <tr>
+        <th>StepWidth</th>
+        <td><input size="4" type="number" name="steps" value="100" [(ngModel)]="robot.stepWidth"></td>
       </tr>
     </tbody>
   </table>

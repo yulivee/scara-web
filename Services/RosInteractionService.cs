@@ -9,22 +9,9 @@ using System.Reflection;
 
 namespace scara_web_backend.Services
 {
-    public class RosInteractionService : IRosInteractionService
+    public class RosInteractionService : IRobotInteractionService
     {
         private readonly Dictionary<string, IRosTopicPublisher> topics;
-
-        /*         private Dictionary<String, Dictionary<String,object>> _topics = new Dictionary<string, Dictionary<string, object>>{ 
-{ "Home" , new Dictionary<string, object> {{ "type", "std_msgs.Empty"}, {"pubId", null}} ,
-{ "SetPidState", "std_msgs.Empty"},
-{ "DriveTo" , "scara_master::AxisClicks"}, { "DriveDist" , "scara_master::AxisClicks"}
-};
-
-
-{ home => {
-type => std_msgs.Empty,
-pubId => $publisher
-}}
-*/
 
         private interface IRosTopicPublisher
         {

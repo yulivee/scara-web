@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { AbsoluteDriveComponent } from './robot/abs-drive.component';
 import { RelativeDriveComponent } from './robot/rel-drive.component';
+import { RobotParametersComponent } from './robot/parameters.component';
+import { CustomCommandComponent } from './robot/commands.component';
+import { ProgrammingComponent } from './robot/programming.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { RelativeDriveComponent } from './robot/rel-drive.component';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
+    RobotParametersComponent,
+    CustomCommandComponent,
+    ProgrammingComponent,
     AbsoluteDriveComponent,
     RelativeDriveComponent
   ],
