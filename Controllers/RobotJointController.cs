@@ -41,9 +41,9 @@ namespace scara_web_backend.Controllers
         }
 
         [HttpPost("motorState")]
-        public void motorState(bool motorState){
-            Console.WriteLine("Set Motors to" + ( motorState.Equals(true) ? "on" : "off") );
-            this._rosService.SetMotorState(motorState);
+        public void motorState(RobotParameters parameters){
+            Console.WriteLine("Set Motors to " + ( parameters.MotorState.Equals(true) ? "on" : "off") );
+            this._rosService.SetMotorState(parameters.MotorState);
         }
 
         [HttpGet("zeroAxis")]

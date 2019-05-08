@@ -23,8 +23,8 @@ export class RobotParametersComponent {
     this._robotService.setRobotParameters(this.params);
   }
 
-  public setMotorState(state: number): void {
-    this._robotService.setMotorState(state === 1 ? true : false);
+  public setMotorState(state: boolean): void {
+    this._robotService.setMotorState(state);
   }
 
   public zeroAxis(): void {

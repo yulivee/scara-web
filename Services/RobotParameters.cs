@@ -4,5 +4,6 @@ namespace scara_web_backend.Services
     {
         public int Zone { get; set; }
         public int Speed { get; set; }
+        public bool MotorState { get; set; }
     }
 }

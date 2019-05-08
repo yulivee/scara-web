@@ -36,7 +36,9 @@ export class RobotService {
     }, error => console.error(error));
   }
   public setMotorState(state: boolean): void {
-    this._http.post<any>(this._baseUrl + 'motorState', state).subscribe(result => {
+    let parameters = new RobotParameters();
+    parameters.motorState = state;
+    this._http.post<any>(this._baseUrl + 'motorState', parameters).subscribe(result => {
       console.log('result of http post!', result);
     }, error => console.error(error));
   }
