@@ -19,7 +19,7 @@ namespace scara_web_backend.Controllers
         }
 
         [HttpPost("relMove")]
-        public void relMove(RobotJoints robotJoints){
+        public void relMove([FromBody] RobotJoints robotJoints){
             Console.WriteLine("Relative Move/DriveDist");
 
             TryValidateModel(robotJoints);
@@ -32,7 +32,7 @@ namespace scara_web_backend.Controllers
         }
 
         [HttpPost("absMove")]
-        public void absMove(RobotJoints robotJoints){
+        public void absMove([FromBody] RobotJoints robotJoints){
             Console.WriteLine("Absolute Move/DriveTo");
             this._rosService.AbsoluteMove(robotJoints);
         }
@@ -42,13 +42,13 @@ namespace scara_web_backend.Controllers
         }
 
         [HttpPost("params")]
-        public void setParams(RobotParameters robotParameters){
+        public void setParams([FromBody] RobotParameters robotParameters){
             Console.WriteLine("Set Robot Parameters");
             this._rosService.SetParameters(robotParameters);
         }
 
         [HttpPost("motorState")]
-        public void motorState(RobotParameters parameters){
+        public void motorState([FromBody] RobotParameters parameters){
             Console.WriteLine("Set Motors to " + ( parameters.MotorState.Equals(true) ? "on" : "off") );
             this._rosService.SetMotorState(parameters.MotorState);
         }
@@ -66,7 +66,7 @@ namespace scara_web_backend.Controllers
         }
 
         [HttpPost("runProg")]
-        public void runProg(string rawProgram){
+        public void runProg([FromBody] string rawProgram){
             Console.WriteLine("Execute Program");
             var robotProgram = new RobotProgram();
             foreach ( var rawCommand in rawProgram.Split('\n') ) {
@@ -77,7 +77,7 @@ namespace scara_web_backend.Controllers
         }
 
         [HttpPost("customCmd")]
-        public void customCmd(string rawCommand){
+        public void customCmd([FromBody] string rawCommand){
             Console.WriteLine("Execute Command :",rawCommand);
             this._rosService.RunCommand(RobotCommand.FromString(rawCommand));
         }
