@@ -13,19 +13,6 @@ namespace scara_web_backend.Services
     {
         private readonly Dictionary<string, IRosTopicPublisher> topics;
 
-        /*         private Dictionary<String, Dictionary<String,object>> _topics = new Dictionary<string, Dictionary<string, object>>{ 
-{ "Home" , new Dictionary<string, object> {{ "type", "std_msgs.Empty"}, {"pubId", null}} ,
-{ "SetPidState", "std_msgs.Empty"},
-{ "DriveTo" , "scara_master::AxisClicks"}, { "DriveDist" , "scara_master::AxisClicks"}
-};
-
-
-{ home => {
-type => std_msgs.Empty,
-pubId => $publisher
-}}
-*/
-
         private interface IRosTopicPublisher
         {
             string Name { get; }
@@ -91,6 +78,36 @@ pubId => $publisher
         //driveTo - einen Punkt anfahren
             topics["DriveTo"].Publish(new std_msgs.String(robotJoints.ToString()));
 
+        }
+
+        public void SetParameters(RobotParameters robotParameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetMotorState(bool State)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ZeroAxis()
+        {
+            throw new NotImplementedException();
+        }
+
+        public RobotJoints GetCurrentPosition()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RunProgram(RobotProgram program)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RunCommand(RobotCommand command)
+        {
+            throw new NotImplementedException();
         }
     }
 }

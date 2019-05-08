@@ -12,9 +12,9 @@ namespace scara_web_backend.Controllers
     public class RobotJointController : Controller
     {
 
-        private IRosInteractionService _rosService {get;}
+        private IRobotInteractionService _rosService {get;}
 
-        public RobotJointController(IRosInteractionService _rosService) {
+        public RobotJointController(IRobotInteractionService _rosService) {
             this._rosService = _rosService;
         }
 
@@ -34,5 +34,45 @@ namespace scara_web_backend.Controllers
         public void status(){
         }
 
+        [HttpPost("params")]
+        public void setParams(RobotParameters robotParameters){
+            Console.WriteLine("Set Robot Parameters");
+            this._rosService.SetParameters(robotParameters);
+        }
+
+        [HttpPost("motorState")]
+        public void motorState(bool motorState){
+            Console.WriteLine("Set Motors to" + ( motorState.Equals(true) ? "on" : "off") );
+            this._rosService.SetMotorState(motorState);
+        }
+
+        [HttpGet("zeroAxis")]
+        public void zeroAxis(){
+            Console.WriteLine("Set Home");
+            this._rosService.ZeroAxis();
+        }
+
+        [HttpGet("currentPos")]
+        public RobotJoints currentPos(){
+            Console.WriteLine("Get Current Position");
+            return this._rosService.GetCurrentPosition();
+        }
+
+        [HttpPost("runProg")]
+        public void runProg(string rawProgram){
+            Console.WriteLine("Execute Program");
+            var robotProgram = new RobotProgram();
+            foreach ( var rawCommand in rawProgram.Split('\n') ) {
+                var robotCommand = RobotCommand.FromString(rawCommand);
+                robotProgram.Commands.Add(robotCommand);
+            }
+            this._rosService.RunProgram(robotProgram);
+        }
+
+        [HttpPost("customCmd")]
+        public void customCmd(string rawCommand){
+            Console.WriteLine("Execute Command :",rawCommand);
+            this._rosService.RunCommand(RobotCommand.FromString(rawCommand));
+        }
     }
 }

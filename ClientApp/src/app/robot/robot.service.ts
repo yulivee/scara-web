@@ -2,7 +2,9 @@ import { Injectable, Inject } from '@angular/core';
 import { RobotJoints } from './RobotJoints';
 import { HttpClient } from '@angular/common/http';
 import { RobotParameters } from './RobotParameters';
-
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
+//import { pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +45,15 @@ export class RobotService {
     this._http.get<any>(this._baseUrl + 'zeroAxis').subscribe(result => {
       console.log('result of http post!', result);
     }, error => console.error(error));
+  }
+
+  public getCurrentPosition(): Observable<RobotJoints> {
+    return this._http.get<RobotJoints>(this._baseUrl +'currentPos').pipe(map(robotJoints => Object.assign(new RobotJoints(), robotJoints)));
+  }
+
+  public runProgram(program: string) : void {
+        this._http.post<any>(this._baseUrl + 'runProg', program).subscribe(result => {
+          console.log('result of http post!', result);
+        }, error => console.error(error));
   }
 }

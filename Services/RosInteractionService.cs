@@ -79,6 +79,36 @@ namespace scara_web_backend.Services
             topics["DriveTo"].Publish(new std_msgs.String(robotJoints.ToString()));
 
         }
+
+        public void SetParameters(RobotParameters robotParameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetMotorState(bool State)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ZeroAxis()
+        {
+            throw new NotImplementedException();
+        }
+
+        public RobotJoints GetCurrentPosition()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RunProgram(RobotProgram program)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RunCommand(RobotCommand command)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

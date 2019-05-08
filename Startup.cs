@@ -29,7 +29,7 @@ namespace scara_web_backend
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            var rosService = new RosInteractionService();
+            var rosService = new TestInteractionService();
 
             services.AddSingleton<IRobotInteractionService>(rosService);
         }

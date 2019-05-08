@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { RobotJoints } from './RobotJoints';
+import { RobotService } from './robot.service';
 
 @Component({
   selector: 'app-program',
@@ -10,7 +10,8 @@ import { RobotJoints } from './RobotJoints';
 
 export class ProgrammingComponent {
 
-  constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string) {
+  constructor(private _robotService: RobotService) {
+
   }
 
   public program : string;
@@ -18,32 +19,18 @@ export class ProgrammingComponent {
   public robot: RobotJoints = new RobotJoints();
 
   public teachCurrentPos(): void {
-    this._http.get<any>(this._baseUrl + 'api/RobotJoint/currentPos').subscribe(result => {
-      console.log('10,', result);
-      this.program.concat('10,'+result);
-    }, error => console.error(error));
+    this._robotService.getCurrentPosition().subscribe( robotJoints => { this.program += '10,'+ robotJoints.toString() + '\n'})
   }
 
   public runProgram(): void {
-
-      let programLines : Array<string>;
-      programLines = this.program.split('\n');
-      programLines.forEach( line => { line.concat('\n'); });
-
-      programLines.forEach( line => {
-        this._http.post<any>(this._baseUrl + 'api/RobotJoint/runCmd', line).subscribe(result => {
-          console.log('result of http post!', result);
-        }, error => console.error(error));
-
-      })
-
+      this._robotService.runProgram(this.program);
   }
 
   public pauseProgram(): void {
-
+    this._robotService.setMotorState(false);
   }
 
   public stopProgram(): void {
-
+    this._robotService.setMotorState(false);
   }
 }
