@@ -21,7 +21,14 @@ namespace scara_web_backend.Controllers
         [HttpPost("relMove")]
         public void relMove(RobotJoints robotJoints){
             Console.WriteLine("Relative Move/DriveDist");
-            this._rosService.RelativeMove(robotJoints);
+
+            TryValidateModel(robotJoints);
+            if( ModelState.IsValid ) {
+                this._rosService.RelativeMove(robotJoints);
+            }else{
+                Console.WriteLine("Invalid Model");
+            }
+
         }
 
         [HttpPost("absMove")]

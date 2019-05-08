@@ -6,7 +6,8 @@ namespace scara_web_backend.Services {
     {
         public void AbsoluteMove(RobotJoints robotJoints)
         {
-            Console.WriteLine(robotJoints.ToString());
+            Console.Write("-> Test - ", System.Reflection.MethodBase.GetCurrentMethod().Name +" ->");
+            Console.WriteLine(robotJoints.ToString()+" <-");
         }
 
         public RobotJoints GetCurrentPosition()
@@ -16,31 +17,37 @@ namespace scara_web_backend.Services {
 
         public void RelativeMove(RobotJoints robotJoints)
         {
-            Console.WriteLine(robotJoints.ToString());
+            Console.Write("-> Test - ", System.Reflection.MethodBase.GetCurrentMethod().Name +" ->");
+            Console.WriteLine(robotJoints.ToString()+" <-");
         }
 
         public void RunCommand(RobotCommand command)
         {
-            Console.WriteLine(command.ToString());
+            Console.Write("-> Test - ", System.Reflection.MethodBase.GetCurrentMethod().Name +" ->");
+            Console.WriteLine(command.ToString()+" <-");
         }
 
         public void RunProgram(RobotProgram program)
         {
-            Console.WriteLine(program.ToString());
+            Console.Write("-> Test - ", System.Reflection.MethodBase.GetCurrentMethod().Name +" ->");
+            Console.WriteLine(program.ToString()+" <-");
         }
 
         public void SetMotorState(bool state)
         {
-            Console.WriteLine(state.ToString());
+            Console.Write("-> Test - ", System.Reflection.MethodBase.GetCurrentMethod().Name +" ->");
+            Console.WriteLine(state.ToString()+" <-");
         }
 
         public void SetParameters(RobotParameters robotParameters)
         {
-            Console.WriteLine(robotParameters.ToString());
+            Console.Write("-> Test - ", System.Reflection.MethodBase.GetCurrentMethod().Name +" ->");
+            Console.WriteLine(robotParameters.ToString()+" <-");
         }
 
         public void ZeroAxis()
         {
+            Console.Write("-> Test - ", System.Reflection.MethodBase.GetCurrentMethod().Name +" ->");
             Console.WriteLine("Homing Robot");
         }
     }

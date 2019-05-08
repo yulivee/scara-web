@@ -7,6 +7,6 @@ namespace scara_web_backend.Services {
             public int joint4 {get;set;}
             public int joint5 {get;set;}
             public int joint6 {get;set;}
-            public int joint7 {get;set;}
+            public int gripper {get;set;}
         }
 }

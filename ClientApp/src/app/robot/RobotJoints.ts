@@ -7,8 +7,8 @@ export class RobotJoints {
   public joint6: number = 0;
   public gripper: number = 0;
 
-  public toString() : string {
+/*  public toString() : string {
      return Object.keys(this).filter(propertyName => typeof(this[propertyName]) !== 'function').map(propertyName => this[propertyName]).reduce((p, c) => p.concat(',', c));
      // return joint1+','+..
-  }
+  }*/
 }

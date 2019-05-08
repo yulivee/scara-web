@@ -19,6 +19,7 @@ export class RobotService {
   }
 
   public relativeMove(robotJoints: RobotJoints): void {
+    console.log("POST robotjoints",robotJoints);
     this._http.post<any>(this._baseUrl + 'relMove', robotJoints).subscribe(result => {
       console.log('result of http post!', result);
     }, error => console.error(error));
