@@ -1,11 +1,39 @@
-<h2>Move Robot Arm to Relative Joint position</h2>
-<h3>Drive individual Joints by Hand</h3>
+<!--<h2>Move Robot Arm to Relative Joint position</h2>
+<h3>Drive individual Joints by Hand</h3>-->
+<mat-grid-list cols="2">
+  <mat-grid-tile colspan="1" rowspan="1">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>J1</mat-card-title>
+        <mat-card-subtitle>Z Axis</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-raised-button (click)="increment('joint1')">+</button>
+        <button mat-raised-button (click)="increment('joint1')">-</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>J2</mat-card-title>
+          <mat-card-subtitle>Shoulder</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-raised-button (click)="increment('joint2')">+</button>
+          <button mat-raised-button (click)="increment('joint2')">-</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
 
   <table class='table table-striped'>
     <tbody>
       <tr>
         <th>J1 - Z Axis</th>
-        <td><input type="button" value="+" (click)="increment('joint1')"></td>
+        <td>
+          <input type="button" value="+" (click)="increment('joint1')"></td>
         <td><input type="button" value="-" (click)="decrement('joint1')"></td>
       </tr>
       <tr>
@@ -39,8 +67,12 @@
         <td><input type="button" value="-" (click)="decrement('gripper')"></td>
       </tr>
       <tr>
-        <th>StepWidth</th>
-        <td><input size="4" type="number" name="steps" value="100" [(ngModel)]="stepWidth"></td>
+        <th></th>
+        <td>
+          <mat-form-field>
+            <input matInput placeholder="Step Width" size="4" type="number" name="steps" value="100" [(ngModel)]="stepWidth">
+          </mat-form-field>
+        </td>
       </tr>
     </tbody>
   </table>
