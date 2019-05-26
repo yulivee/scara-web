@@ -1,4 +1,5 @@
 using System;
+using scara_web_backend.Services.Robot;
 
 namespace scara_web_backend.Services {
     public class TestInteractionService : IRobotInteractionService

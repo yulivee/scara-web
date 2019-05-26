@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.IO.Ports;
 using System.Collections.Generic;
+using scara_web_backend.Services.Robot;
 
 namespace scara_web_backend.Services
 {
@@ -53,10 +54,18 @@ namespace scara_web_backend.Services
             _serialPort.Close();
         }
 
-        public void RelativeMove(RobotJoints robotJoints)
+        public bool RelativeMove(RobotJoints robotJoints)
         {
              Console.WriteLine($"RelMove: {RobotCommand.CommandType.DriveTo},{robotJoints}");
+             var successfulWrite = true;
+
+             try {
              _serialPort.WriteLine($"{RobotCommand.CommandType.DriveTo},{robotJoints}");
+             } catch {
+                 successfulWrite = false;
+             }
+
+             return successfulWrite;
         }
 
         public void AbsoluteMove(RobotJoints robotJoints)
@@ -115,6 +124,11 @@ namespace scara_web_backend.Services
                     this._serialPort.Dispose();
                 }
 		}
+
+        void IRobotInteractionService.RelativeMove(RobotJoints robotJoints)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

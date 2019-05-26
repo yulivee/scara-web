@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using std_msgs = RosSharp.RosBridgeClient.Messages.Standard;
 using System.Reflection;
+using scara_web_backend.Services.Robot;
 
 namespace scara_web_backend.Services
 {

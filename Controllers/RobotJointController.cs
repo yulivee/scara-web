@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using scara_web_backend.Services;
+using scara_web_backend.Services.Robot;
 
 
 namespace scara_web_backend.Controllers

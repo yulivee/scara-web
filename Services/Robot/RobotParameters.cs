@@ -1,4 +1,4 @@
-namespace scara_web_backend.Services
+namespace scara_web_backend.Services.Robot
 {
     public class RobotParameters
     {
