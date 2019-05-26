@@ -41,7 +41,7 @@ namespace scara_web_backend
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
         {
 
-            loggerfactory.AddConsole(minLevel: LogLevel.Warning);
+           // loggerfactory.AddConsole(minLevel: LogLevel.Warning);
 
             if (env.IsDevelopment())
             {

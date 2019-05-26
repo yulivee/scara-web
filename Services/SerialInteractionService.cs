@@ -56,11 +56,11 @@ namespace scara_web_backend.Services
 
         public bool RelativeMove(RobotJoints robotJoints)
         {
-             Console.WriteLine($"RelMove: {RobotCommand.CommandType.DriveTo},{robotJoints}");
+             Console.WriteLine($"RelMove: {(int) RobotCommand.CommandType.DriveTo},{robotJoints}");
              var successfulWrite = true;
 
              try {
-             _serialPort.WriteLine($"{RobotCommand.CommandType.DriveTo},{robotJoints}");
+             _serialPort.WriteLine($"{(int) RobotCommand.CommandType.DriveTo},{robotJoints}");
              } catch {
                  successfulWrite = false;
              }
@@ -70,22 +70,22 @@ namespace scara_web_backend.Services
 
         public void AbsoluteMove(RobotJoints robotJoints)
         {
-             Console.WriteLine($"AbsMove: {RobotCommand.CommandType.DriveDist},{robotJoints}");
-             _serialPort.WriteLine($"{RobotCommand.CommandType.DriveDist},{robotJoints}");
+             Console.WriteLine($"AbsMove: {(int) RobotCommand.CommandType.DriveDist},{robotJoints}");
+             _serialPort.WriteLine($"{(int) RobotCommand.CommandType.DriveDist},{robotJoints}");
         }
 
         public void SetParameters(RobotParameters robotParameters)
         {
             if (robotParameters.Zone.HasValue){
-                _serialPort.WriteLine($"{RobotCommand.CommandType.SetZone},{robotParameters.Zone.Value}");
+                _serialPort.WriteLine($"{(int) RobotCommand.CommandType.SetZone},{robotParameters.Zone.Value}");
             }
             if (robotParameters.Speed.HasValue)
             {
-                _serialPort.WriteLine($"{RobotCommand.CommandType.SetSpeed},{robotParameters.Speed.Value}");
+                _serialPort.WriteLine($"{(int) RobotCommand.CommandType.SetSpeed},{robotParameters.Speed.Value}");
             }
             if (robotParameters.MotorState.HasValue)
             {
-                _serialPort.WriteLine($"{RobotCommand.CommandType.SetMotorState},{robotParameters.MotorState.Value}");
+                _serialPort.WriteLine($"{(int) RobotCommand.CommandType.SetMotorState},{robotParameters.MotorState.Value}");
             }
         }
 
@@ -96,7 +96,7 @@ namespace scara_web_backend.Services
 
         public void ZeroAxis()
         {
-            _serialPort.WriteLine($"{RobotCommand.CommandType.Home}");
+            _serialPort.WriteLine($"{(int) RobotCommand.CommandType.Home}");
         }
 
         public RobotJoints GetCurrentPosition()
