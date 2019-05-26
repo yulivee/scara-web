@@ -5,7 +5,7 @@ namespace scara_web_backend.Services
     public class RobotCommand {
         public static RobotCommand FromString (string rawCommand)
         {
-            rawCommand = rawCommand.Replace("\n",string.Empty)
+            rawCommand = rawCommand.Replace("\n", string.Empty)
                                    .Replace("\r", string.Empty)
                                    .Replace(" ", string.Empty);
             var robotCommand = new RobotCommand();

@@ -74,8 +74,7 @@ namespace scara_web_backend
 
                 if (env.IsDevelopment())
                 {
-                    //spa.UseAngularCliServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://0.0.0.0:4200");
+                    spa.UseAngularCliServer(npmScript: "start");
                 }
             });
         }

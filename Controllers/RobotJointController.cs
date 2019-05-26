@@ -24,7 +24,7 @@ namespace scara_web_backend.Controllers
 
         [HttpPost("relMove")]
         public void relMove([FromBody] RobotJoints robotJoints){
-            _logger.LogError("Relative Move");
+            //_logger.LogError("Relative Move");
             Console.WriteLine("Relative Move/DriveDist");
 
             TryValidateModel(robotJoints);
@@ -48,8 +48,10 @@ namespace scara_web_backend.Controllers
 
         [HttpPost("params")]
         public void setParams([FromBody] RobotParameters robotParameters){
+           if (robotParameters.Speed.HasValue || robotParameters.Zone.HasValue){
             Console.WriteLine("Set Robot Parameters");
             this._rosService.SetParameters(robotParameters);
+           }
         }
 
         [HttpPost("motorState")]
