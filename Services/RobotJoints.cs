@@ -13,7 +13,7 @@ namespace scara_web_backend.Services
         public int gripper { get; set; }
 
 
-        public override string ToString(RobotJoints joints)
+        public override string ToString ()
         {
             var jointString = new StringBuilder();
             

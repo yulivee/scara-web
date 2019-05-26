@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { RobotJoints } from './RobotJoints';
 import { RobotService } from './robot.service';
 
+interface robotJointDescription {
+  header: string,
+  subHeader: string,
+  mapping: string
+}
 
 @Component({
   selector: 'app-rel-drive',
@@ -9,6 +14,42 @@ import { RobotService } from './robot.service';
   styleUrls: ['./drive.component.css']
 })
 export class RelativeDriveComponent {
+  public robotJoints: robotJointDescription[] = [{
+    header: 'Z Axis',
+    subHeader: 'J1',
+    mapping: 'joint1'
+  },
+  {
+    header: 'Shoulder',
+    subHeader: 'J2',
+    mapping: 'joint2'
+  },
+  {
+    header: 'Ellbow',
+    subHeader: 'J3',
+    mapping: 'joint3'
+  },
+  {
+    header: 'Hand UAJ',
+    subHeader: 'J4',
+    mapping: 'joint4'
+  },
+  {
+    header: '',
+    subHeader: 'J5',
+    mapping: 'joint5'
+  },
+  {
+    header: '',
+    subHeader: 'J6',
+    mapping: 'joint6'
+  },
+  {
+    subHeader: 'J7',
+    header: 'Gripper',
+    mapping: 'joint7'
+  },
+];
 
   constructor(private _robotService: RobotService) {
   }

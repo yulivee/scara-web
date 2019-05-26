@@ -9,13 +9,6 @@ namespace scara_web_backend.Services
     {
 
         private SerialPort _serialPort {get; set;}
-        private readonly Dictionary<string, int> commands = new Dictionary<string, int>{
-            { "DriveTo", 12 },
-            { "DriveDist", 10 },
-            { "Home", 0 },
-            { "SetPidState", 1 }
-        }
-
         public SerialInteractionService()
         {
             _serialPort.PortName = SerialPort.GetPortNames().First();
@@ -35,17 +28,27 @@ namespace scara_web_backend.Services
 
         public void RelativeMove(RobotJoints robotJoints)
         {
-             _serialPort.WriteLine(commands["DriveTo"].ToString()+","+robotJoints.ToString());
+             _serialPort.WriteLine($"{RobotCommand.CommandType.DriveTo},{robotJoints}");
         }
 
         public void AbsoluteMove(RobotJoints robotJoints)
         {
-             _serialPort.WriteLine(commands["DriveDist"].ToString()+","+robotJoints.ToString());
+             _serialPort.WriteLine($"{RobotCommand.CommandType.DriveDist},{robotJoints}");
         }
 
         public void SetParameters(RobotParameters robotParameters)
         {
-            throw new NotImplementedException();
+            if (robotParameters.Zone.HasValue){
+                _serialPort.WriteLine($"{RobotCommand.CommandType.SetZone},{robotParameters.Zone.Value}");
+            }
+            if (robotParameters.Speed.HasValue)
+            {
+                _serialPort.WriteLine($"{RobotCommand.CommandType.SetSpeed},{robotParameters.Speed.Value}");
+            }
+            if (robotParameters.MotorState.HasValue)
+            {
+                _serialPort.WriteLine($"{RobotCommand.CommandType.SetMotorState},{robotParameters.MotorState.Value}");
+            }
         }
 
         public void SetMotorState(bool State)
@@ -55,7 +58,7 @@ namespace scara_web_backend.Services
 
         public void ZeroAxis()
         {
-            throw new NotImplementedException();
+            _serialPort.WriteLine($"{RobotCommand.CommandType.Home}");
         }
 
         public RobotJoints GetCurrentPosition()
