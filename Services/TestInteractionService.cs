@@ -1,4 +1,3 @@
-
 using System;
 
 namespace scara_web_backend.Services {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using scara_web_backend.Services;
 
 
@@ -12,14 +13,18 @@ namespace scara_web_backend.Controllers
     public class RobotJointController : Controller
     {
 
+        ILogger<RobotJointController> _logger;
+
         private IRobotInteractionService _rosService {get;}
 
-        public RobotJointController(IRobotInteractionService _rosService) {
-            this._rosService = _rosService;
+        public RobotJointController(ILogger<RobotJointController> logger, IRobotInteractionService _robotService) {
+            this._rosService = _robotService;
+            _logger = logger;
         }
 
         [HttpPost("relMove")]
         public void relMove([FromBody] RobotJoints robotJoints){
+            _logger.LogError("Relative Move");
             Console.WriteLine("Relative Move/DriveDist");
 
             TryValidateModel(robotJoints);
@@ -49,8 +54,10 @@ namespace scara_web_backend.Controllers
 
         [HttpPost("motorState")]
         public void motorState([FromBody] RobotParameters parameters){
-            Console.WriteLine("Set Motors to " + ( parameters.MotorState.Equals(true) ? "on" : "off") );
-            this._rosService.SetMotorState(parameters.MotorState);
+           if (parameters.MotorState.HasValue){
+                Console.WriteLine("Set Motors to " + ( parameters.MotorState.Equals(true) ? "on" : "off") );
+                this._rosService.SetMotorState(parameters.MotorState.Value);
+           }
         }
 
         [HttpGet("zeroAxis")]

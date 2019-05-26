@@ -5,22 +5,49 @@ using System.Collections.Generic;
 
 namespace scara_web_backend.Services
 {
-    public class SerialInteractionService : IRobotInteractionService
+    public class SerialInteractionService : IRobotInteractionService, IDisposable
     {
 
         private SerialPort _serialPort {get; set;}
         public SerialInteractionService()
         {
-            _serialPort.PortName = SerialPort.GetPortNames().First();
-            _serialPort.BaudRate = 9600;
-            _serialPort.ReadTimeout = 500;
-            _serialPort.WriteTimeout = 500;
-            _serialPort.Handshake = Handshake.None;
-            _serialPort.NewLine = "\r\n";
-            _serialPort.Open();
-            //_continue = true;
+            var serialPort = this.findGoodPort();
+            if(serialPort == null || !serialPort.IsOpen) {
+                throw new Exception("Unable to connect to Serial Port");
+            }
 
+            this._serialPort = serialPort;
         }
+
+        private void configurePort(SerialPort port){
+            port.BaudRate = 9600;
+            port.ReadTimeout = 500;
+            port.WriteTimeout = 500;
+            port.Handshake = Handshake.None;
+            port.NewLine = "\r\n";
+        }
+
+        private SerialPort findGoodPort(){
+		var portNames = SerialPort.GetPortNames().Where(x => x.ToLower().Contains("usb"));
+		foreach(var portName in portNames) {
+
+			var goodPort = true;
+			var _serialPort = new SerialPort();
+			this.configurePort(_serialPort);
+			_serialPort.PortName = portName;
+			
+			try {
+				_serialPort.Open();
+			} catch {
+				goodPort = false;
+				_serialPort.Dispose();
+			}
+			if(goodPort) {
+				return _serialPort;
+			}
+		}
+		return null;
+	}
 
         ~SerialInteractionService() {
             _serialPort.Close();
@@ -28,11 +55,13 @@ namespace scara_web_backend.Services
 
         public void RelativeMove(RobotJoints robotJoints)
         {
+             Console.WriteLine($"RelMove: {RobotCommand.CommandType.DriveTo},{robotJoints}");
              _serialPort.WriteLine($"{RobotCommand.CommandType.DriveTo},{robotJoints}");
         }
 
         public void AbsoluteMove(RobotJoints robotJoints)
         {
+             Console.WriteLine($"AbsMove: {RobotCommand.CommandType.DriveDist},{robotJoints}");
              _serialPort.WriteLine($"{RobotCommand.CommandType.DriveDist},{robotJoints}");
         }
 
@@ -75,6 +104,17 @@ namespace scara_web_backend.Services
         {
             throw new NotImplementedException();
         }
+
+        public void Dispose()
+        {
+            	if(this._serialPort != null) {
+                    try {
+                        if(this._serialPort.IsOpen)
+                            this._serialPort.Close();
+                    } catch { }			
+                    this._serialPort.Dispose();
+                }
+		}
     }
 
 }

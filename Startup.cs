@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using scara_web_backend.Services;
 
 namespace scara_web_backend
@@ -22,6 +23,7 @@ namespace scara_web_backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddLogging();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -29,14 +31,18 @@ namespace scara_web_backend
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            var rosService = new TestInteractionService();
+            var robotService = new TestInteractionService();
+            //var robotService = new SerialInteractionService();
 
-            services.AddSingleton<IRobotInteractionService>(rosService);
+            services.AddSingleton<IRobotInteractionService>(robotService);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
         {
+
+            loggerfactory.AddConsole(minLevel: LogLevel.Warning);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -68,7 +74,8 @@ namespace scara_web_backend
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://0.0.0.0:4200");
                 }
             });
         }
